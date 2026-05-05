@@ -8,3 +8,5 @@ Running notes on ongoing development work.
 - refactored data fetching with better caching
 ### 2026-05-04
 - added dark mode support for new components
+### 2026-05-05
+- improved form validation and user feedback
