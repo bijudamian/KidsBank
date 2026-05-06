@@ -10,3 +10,5 @@ Running notes on ongoing development work.
 - added dark mode support for new components
 ### 2026-05-05
 - improved form validation and user feedback
+### 2026-05-06
+- reviewed authentication flow and cleaned up token handling
