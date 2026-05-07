@@ -14,3 +14,4 @@ Running notes on ongoing development work.
 - reviewed authentication flow and cleaned up token handling
 ### 2026-05-07
 - improved code readability with better variable names
+- cleaned up git history and removed debug logs
