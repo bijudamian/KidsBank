@@ -12,3 +12,5 @@ Running notes on ongoing development work.
 - improved form validation and user feedback
 ### 2026-05-06
 - reviewed authentication flow and cleaned up token handling
+### 2026-05-07
+- improved code readability with better variable names
