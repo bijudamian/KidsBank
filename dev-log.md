@@ -15,3 +15,5 @@ Running notes on ongoing development work.
 ### 2026-05-07
 - improved code readability with better variable names
 - cleaned up git history and removed debug logs
+### 2026-05-08
+- added edge case handling for empty states
