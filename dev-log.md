@@ -20,3 +20,4 @@ Running notes on ongoing development work.
 ### 2026-05-09
 - improved error handling in async functions
 - fixed server-side hydration mismatch
+- added dark mode support for new components
