@@ -19,3 +19,4 @@ Running notes on ongoing development work.
 - added edge case handling for empty states
 ### 2026-05-09
 - improved error handling in async functions
+- fixed server-side hydration mismatch
