@@ -17,3 +17,5 @@ Running notes on ongoing development work.
 - cleaned up git history and removed debug logs
 ### 2026-05-08
 - added edge case handling for empty states
+### 2026-05-09
+- improved error handling in async functions
