@@ -21,3 +21,5 @@ Running notes on ongoing development work.
 - improved error handling in async functions
 - fixed server-side hydration mismatch
 - added dark mode support for new components
+### 2026-05-10
+- set up linting rules and fixed existing violations
