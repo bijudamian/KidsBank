@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { GameState, Loan } from '../types/game';
-import { MUTUAL_FUNDS } from '../data/mutualFunds';
+import { MUTUAL_FUNDS_BY_ID } from '../data/mutualFunds';
 import { FD_OPTIONS } from '../data/fixedDeposits';
 import { LOAN_TYPES } from '../data/loans';
 import { calculateMonthlyPayment } from '../utils/timeUtils';
@@ -114,7 +114,7 @@ export const useGameStore = create<GameStore>()(
       },
       investInMF: (amount: number, fundId: string) => {
         const { account } = get();
-        const fund = MUTUAL_FUNDS.find(f => f.id === fundId);
+        const fund = MUTUAL_FUNDS_BY_ID[fundId];
         if (!fund || amount <= 0 || account.balance < amount) return;
         set((state) => ({
           account: {
