@@ -33,3 +33,7 @@ export const MUTUAL_FUNDS: MutualFundType[] = [
     description: 'Mix of safe and growth investments'
   }
 ];
+export const MUTUAL_FUNDS_BY_ID = MUTUAL_FUNDS.reduce((acc, fund) => {
+  acc[fund.id] = fund;
+  return acc;
+}, {} as Record<string, MutualFundType>);
