@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Banknote, LineChart, Landmark } from 'lucide-react';
 import { useGameStore } from '../store/gameStore';
@@ -6,9 +6,7 @@ import { MUTUAL_FUNDS } from '../data/mutualFunds';
 import { BONDS } from '../data/bonds';
 import { toast } from 'sonner';
 import InvestmentDialog from './InvestmentDialog';
-
 type InvestmentType = 'FD' | 'MF' | 'BOND';
-
 export default function InvestmentOptions() {
   const { createFD, investInMF, investInBond, account } = useGameStore();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
@@ -17,20 +15,16 @@ export default function InvestmentOptions() {
   const [months, setMonths] = useState('3');
   const [selectedFund, setSelectedFund] = useState(MUTUAL_FUNDS[0].id);
   const [selectedBond, setSelectedBond] = useState(BONDS[0].id);
-
   const handleInvestment = useCallback(() => {
     const investmentAmount = parseFloat(amount);
-    
     if (isNaN(investmentAmount) || investmentAmount <= 0) {
       toast.error('Please enter a valid amount');
       return;
     }
-
     if (investmentAmount > account.balance) {
       toast.error('Insufficient balance');
       return;
     }
-
     try {
       switch (investmentType) {
         case 'FD':
@@ -48,11 +42,10 @@ export default function InvestmentOptions() {
       }
       setIsDialogOpen(false);
       setAmount('');
-    } catch (error) {
+    } catch (_error) {
       toast.error('Investment failed. Please try again.');
     }
   }, [amount, investmentType, months, selectedFund, selectedBond, account.balance]);
-
   const renderInvestmentDialog = () => {
     switch (investmentType) {
       case 'FD':
@@ -151,7 +144,6 @@ export default function InvestmentOptions() {
         );
     }
   };
-
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -159,7 +151,6 @@ export default function InvestmentOptions() {
       className="bg-white p-6 rounded-xl shadow-lg"
     >
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Investments</h2>
-
       <div className="grid grid-cols-3 gap-4">
         <motion.button
           whileHover={{ scale: 1.02 }}
@@ -173,7 +164,6 @@ export default function InvestmentOptions() {
           <Banknote className="w-8 h-8 text-blue-500 mx-auto mb-2" />
           <p className="font-semibold text-blue-700">Fixed Deposit</p>
         </motion.button>
-
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
@@ -186,7 +176,6 @@ export default function InvestmentOptions() {
           <LineChart className="w-8 h-8 text-purple-500 mx-auto mb-2" />
           <p className="font-semibold text-purple-700">Mutual Fund</p>
         </motion.button>
-
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
@@ -200,7 +189,6 @@ export default function InvestmentOptions() {
           <p className="font-semibold text-green-700">Bonds</p>
         </motion.button>
       </div>
-
       <InvestmentDialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}

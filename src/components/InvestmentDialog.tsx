@@ -2,7 +2,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import * as Dialog from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
-
 interface InvestmentDialogProps {
   isOpen: boolean;
   onClose: () => void;
@@ -11,7 +10,6 @@ interface InvestmentDialogProps {
   onConfirm: () => void;
   confirmText?: string;
 }
-
 const InvestmentDialog = React.forwardRef<HTMLDivElement, InvestmentDialogProps>(({
   isOpen,
   onClose,
@@ -52,10 +50,8 @@ const InvestmentDialog = React.forwardRef<HTMLDivElement, InvestmentDialogProps>
               </motion.button>
             </Dialog.Close>
           </div>
-
           <div className="space-y-4">
             {children}
-
             <div className="flex justify-end space-x-3 mt-6">
               <motion.button
                 whileHover={{ scale: 1.05 }}
@@ -80,7 +76,5 @@ const InvestmentDialog = React.forwardRef<HTMLDivElement, InvestmentDialogProps>
     </Dialog.Root>
   );
 });
-
 InvestmentDialog.displayName = 'InvestmentDialog';
-
 export default InvestmentDialog;
