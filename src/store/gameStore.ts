@@ -1,12 +1,11 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { Account, GameState, Transaction, MutualFundInvestment, Loan } from '../types/game';
+import { GameState, Loan } from '../types/game';
 import { MUTUAL_FUNDS } from '../data/mutualFunds';
 import { FD_OPTIONS } from '../data/fixedDeposits';
 import { LOAN_TYPES } from '../data/loans';
 import { calculateMonthlyPayment } from '../utils/timeUtils';
 import { startOfDay, isSameDay } from 'date-fns';
-
 interface GameStore extends GameState {
   deposit: (amount: number) => void;
   withdraw: (amount: number) => void;
@@ -17,7 +16,6 @@ interface GameStore extends GameState {
   processTimeUpdate: (currentGameTime: Date) => void;
   lastProcessedDay: Date | null;
 }
-
 const INITIAL_STATE: GameState & { lastProcessedDay: Date | null } = {
   account: {
     balance: 1000, // Starting with more money for better gameplay
@@ -34,15 +32,12 @@ const INITIAL_STATE: GameState & { lastProcessedDay: Date | null } = {
   speedMultiplier: 30 * 24, // 1 real second = 1 game month
   lastProcessedDay: null
 };
-
 export const useGameStore = create<GameStore>()(
   persist(
     (set, get) => ({
       ...INITIAL_STATE,
-
       deposit: (amount: number) => {
         if (amount <= 0) return;
-        
         set((state) => ({
           account: {
             ...state.account,
@@ -60,11 +55,9 @@ export const useGameStore = create<GameStore>()(
           ]
         }));
       },
-
       withdraw: (amount: number) => {
         const { account } = get();
         if (amount <= 0 || account.balance < amount) return;
-
         set((state) => ({
           account: {
             ...state.account,
@@ -82,14 +75,11 @@ export const useGameStore = create<GameStore>()(
           ]
         }));
       },
-
       createFD: (amount: number, term: number) => {
         const { account } = get();
         if (amount <= 0 || account.balance < amount) return;
-
         const fdOption = FD_OPTIONS.find(fd => fd.term === term);
         if (!fdOption) return;
-
         set((state) => ({
           account: {
             ...state.account,
@@ -122,12 +112,10 @@ export const useGameStore = create<GameStore>()(
           ]
         }));
       },
-
       investInMF: (amount: number, fundId: string) => {
         const { account } = get();
         const fund = MUTUAL_FUNDS.find(f => f.id === fundId);
         if (!fund || amount <= 0 || account.balance < amount) return;
-
         set((state) => ({
           account: {
             ...state.account,
@@ -158,11 +146,9 @@ export const useGameStore = create<GameStore>()(
           ]
         }));
       },
-
       addToEmergencyFund: (amount: number) => {
         const { account } = get();
         if (amount <= 0 || account.balance < amount) return;
-
         set((state) => ({
           account: {
             ...state.account,
@@ -181,13 +167,10 @@ export const useGameStore = create<GameStore>()(
           ]
         }));
       },
-
       takeLoan: (type: 'HOME' | 'PERSONAL', amount: number, term: number) => {
         const loanConfig = LOAN_TYPES[type];
         if (!loanConfig || amount > loanConfig.maxAmount || term > loanConfig.maxTerm) return;
-
         const monthlyPayment = calculateMonthlyPayment(amount, loanConfig.interestRate, term);
-
         set((state) => ({
           account: {
             ...state.account,
@@ -218,30 +201,24 @@ export const useGameStore = create<GameStore>()(
           ]
         }));
       },
-
       processTimeUpdate: (currentGameTime: Date) => {
         const state = get();
         const currentDay = startOfDay(currentGameTime);
-        
         if (state.lastProcessedDay && isSameDay(state.lastProcessedDay, currentDay)) {
           return;
         }
-
         set((state) => {
           const updatedMFs = state.account.investments.mutualFunds.map(mf => ({
             ...mf,
             currentValue: mf.currentValue * (1 + mf.fundType.expectedReturn / 365)
           }));
-
           const { updatedLoans, totalPayment } = state.account.loans.reduce(
             (acc, loan) => {
               if (loan.remainingAmount <= 0) return acc;
-              
               const updatedLoan = {
                 ...loan,
                 remainingAmount: Math.max(0, loan.remainingAmount - (loan.monthlyPayment / 30))
               };
-
               return {
                 updatedLoans: [...acc.updatedLoans, updatedLoan],
                 totalPayment: acc.totalPayment + (loan.monthlyPayment / 30)
@@ -249,7 +226,6 @@ export const useGameStore = create<GameStore>()(
             },
             { updatedLoans: [], totalPayment: 0 } as { updatedLoans: Loan[], totalPayment: number }
           );
-
           return {
             account: {
               ...state.account,

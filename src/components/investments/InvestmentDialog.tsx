@@ -1,8 +1,7 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import * as Dialog from '@radix-ui/react-dialog';
 import { X } from 'lucide-react';
-
 interface InvestmentDialogProps {
   isOpen: boolean;
   onClose: () => void;
@@ -12,7 +11,6 @@ interface InvestmentDialogProps {
   confirmText?: string;
   isLoading?: boolean;
 }
-
 export default function InvestmentDialog({
   isOpen,
   onClose,
@@ -53,10 +51,8 @@ export default function InvestmentDialog({
               </motion.button>
             </Dialog.Close>
           </div>
-
           <div className="space-y-4">
             {children}
-
             <div className="flex justify-end space-x-3 mt-6">
               <motion.button
                 whileHover={{ scale: 1.05 }}

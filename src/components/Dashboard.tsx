@@ -1,11 +1,9 @@
-import React from 'react';
 import { motion } from 'framer-motion';
 import AccountSummary from './AccountSummary';
 import InvestmentOptions from './InvestmentOptions';
 import DebtOptions from './DebtOptions';
 import TransactionHistory from './TransactionHistory';
 import InvestmentCalculator from './calculator/InvestmentCalculator';
-
 export default function Dashboard() {
   return (
     <motion.div 
@@ -22,7 +20,6 @@ export default function Dashboard() {
           <h1 className="text-4xl font-bold text-blue-600 mb-2">KidsBank</h1>
           <p className="text-gray-600">Learn to grow your wealth! 🚀</p>
         </motion.div>
-
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           <AccountSummary />
           <InvestmentOptions />
