@@ -1,4 +1,4 @@
-import { assertEquals } from "https://deno.land/std@0.210.0/assert/mod.ts";
+import { assertEquals } from "@std/assert";
 import { useGameStore } from "./gameStore.ts";
 
 Deno.test("useGameStore withdraw action", () => {
@@ -12,7 +12,7 @@ Deno.test("useGameStore withdraw action", () => {
     },
   });
 
-  let store = useGameStore.getState();
+  const store = useGameStore.getState();
   const initialBalance = store.account.balance;
 
   // Edge Case: Try withdrawing more than balance

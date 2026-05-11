@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion';
-import AccountSummary from './AccountSummary';
-import InvestmentOptions from './InvestmentOptions';
-import DebtOptions from './DebtOptions';
-import TransactionHistory from './TransactionHistory';
-import InvestmentCalculator from './calculator/InvestmentCalculator';
+import AccountSummary from './AccountSummary.tsx';
+import InvestmentOptions from './InvestmentOptions.tsx';
+import DebtOptions from './DebtOptions.tsx';
+import TransactionHistory from './TransactionHistory.tsx';
+import InvestmentCalculator from './calculator/InvestmentCalculator.tsx';
 export default function Dashboard() {
   return (
     <motion.div 

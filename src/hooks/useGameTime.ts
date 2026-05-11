@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import { useGameStore } from '../store/gameStore';
-import { getGameTime } from '../utils/timeUtils';
+import { useGameStore } from '../store/gameStore.ts';
+import { getGameTime } from '../utils/timeUtils.ts';
 export function useGameTime() {
   const [currentTime, setCurrentTime] = useState(new Date());
   const { gameTime, speedMultiplier } = useGameStore();

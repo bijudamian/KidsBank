@@ -1,4 +1,4 @@
-import { MutualFundType } from '../types/game';
+import { MutualFundType } from '../types/game.ts';
 export const MUTUAL_FUNDS: MutualFundType[] = [
   {
     id: 'kids-index-fund',

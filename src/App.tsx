@@ -1,9 +1,9 @@
 
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'sonner';
-import Dashboard from './components/Dashboard';
-import AuthForm from './components/auth/AuthForm';
-import PrivateRoute from './components/routes/PrivateRoute';
+import Dashboard from './components/Dashboard.tsx';
+import AuthForm from './components/auth/AuthForm.tsx';
+import PrivateRoute from './components/routes/PrivateRoute.tsx';
 function App() {
   return (
     <>

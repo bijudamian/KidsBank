@@ -1,9 +1,9 @@
 import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Home, CreditCard, AlertCircle } from 'lucide-react';
-import { useGameStore } from '../store/gameStore';
-import { LOAN_TYPES } from '../data/loans';
-import InvestmentDialog from './InvestmentDialog';
+import { useGameStore } from '../store/gameStore.ts';
+import { LOAN_TYPES } from '../data/loans.ts';
+import InvestmentDialog from './InvestmentDialog.tsx';
 import { toast } from 'sonner';
 type LoanType = 'HOME' | 'PERSONAL';
 export default function DebtOptions() {

@@ -1,8 +1,8 @@
 import { create } from 'zustand';
-import { supabase } from '../lib/supabase';
+import { supabase } from '../lib/supabase.ts';
 import { User } from '@supabase/supabase-js';
-import { AppError, handleError, formatSupabaseError } from '../utils/errorUtils';
-import { Database } from '../types/supabase';
+import { AppError, handleError, formatSupabaseError } from '../utils/errorUtils.ts';
+import { Database } from '../types/supabase.ts';
 interface AuthState {
   user: User | null;
   session: unknown;
