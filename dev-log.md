@@ -23,3 +23,5 @@ Running notes on ongoing development work.
 - added dark mode support for new components
 ### 2026-05-10
 - set up linting rules and fixed existing violations
+### 2026-05-11
+- updated colour tokens and design system
