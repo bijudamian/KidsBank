@@ -1,11 +1,13 @@
+import { useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { PiggyBank, TrendingUp, Wallet } from 'lucide-react';
 import { useGameStore } from '../store/gameStore';
 export default function AccountSummary() {
   const { account } = useGameStore();
-  const totalInvestments = 
-    account.investments.mutualFunds.reduce((acc, mf) => acc + mf.currentValue, 0) +
-    account.investments.fixedDeposits.reduce((acc, fd) => acc + fd.amount, 0);
+  const totalInvestments = useMemo(() => {
+    return account.investments.mutualFunds.reduce((acc, mf) => acc + mf.currentValue, 0) +
+      account.investments.fixedDeposits.reduce((acc, fd) => acc + fd.amount, 0);
+  }, [account.investments]);
   return (
     <motion.div
       whileHover={{ scale: 1.02 }}
