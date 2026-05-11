@@ -63,15 +63,6 @@ export default function AuthForm() {
             onSubmit={handleSubmit(onSubmit)}
             onToggleMode={() => setIsLogin(!isLogin)}
           />
-
-          {/* Demo Account Info */}
-          <div className="mt-8 p-4 bg-gray-50 rounded-lg">
-            <p className="text-sm text-gray-600 text-center">
-              <strong>Demo Account:</strong><br />
-              Email: demo@kidsbank.com<br />
-              Password: demo123
-            </p>
-          </div>
         </div>
       </motion.div>
     </div>
