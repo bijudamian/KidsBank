@@ -3,10 +3,10 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion } from 'framer-motion';
-import { useAuthStore } from '../../store/authStore';
+import { useAuthStore } from '../../store/authStore.ts';
 import { toast } from 'sonner';
 import { PiggyBank } from 'lucide-react';
-import AuthFormFields from './AuthFormFields';
+import AuthFormFields from './AuthFormFields.tsx';
 const authSchema = z.object({
   email: z.string().email('Please enter a valid email'),
   password: z.string().min(6, 'Password must be at least 6 characters'),

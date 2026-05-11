@@ -1,4 +1,4 @@
-import { BondType } from '../types/game';
+import { BondType } from '../types/game.ts';
 export const BONDS: BondType[] = [
   {
     id: 'govt-10y',

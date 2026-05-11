@@ -1,11 +1,11 @@
 import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Banknote, LineChart, Landmark } from 'lucide-react';
-import { useGameStore } from '../store/gameStore';
-import { MUTUAL_FUNDS } from '../data/mutualFunds';
-import { BONDS } from '../data/bonds';
+import { useGameStore } from '../store/gameStore.ts';
+import { MUTUAL_FUNDS } from '../data/mutualFunds.ts';
+import { BONDS } from '../data/bonds.ts';
 import { toast } from 'sonner';
-import InvestmentDialog from './InvestmentDialog';
+import InvestmentDialog from './InvestmentDialog.tsx';
 type InvestmentType = 'FD' | 'MF' | 'BOND';
 export default function InvestmentOptions() {
   const { createFD, investInMF, investInBond, account } = useGameStore();

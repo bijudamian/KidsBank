@@ -1,7 +1,7 @@
 
 import { motion } from 'framer-motion';
 import { TrendingUp, Star } from 'lucide-react';
-import { MutualFundType } from '../../types/game';
+import { MutualFundType } from '../../types/game.ts';
 interface MutualFundCardProps {
   fund: MutualFundType;
   isSelected: boolean;

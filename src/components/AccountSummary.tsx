@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion';
 import { PiggyBank, TrendingUp, Wallet } from 'lucide-react';
-import { useGameStore } from '../store/gameStore';
+import { useGameStore } from '../store/gameStore.ts';
 export default function AccountSummary() {
   const { account } = useGameStore();
   const totalInvestments = 

@@ -1,9 +1,9 @@
 import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Calculator, TrendingUp } from 'lucide-react';
-import { MUTUAL_FUNDS } from '../../data/mutualFunds';
-import { BONDS } from '../../data/bonds';
-import { FD_OPTIONS } from '../../data/fixedDeposits';
+import { MUTUAL_FUNDS } from '../../data/mutualFunds.ts';
+import { BONDS } from '../../data/bonds.ts';
+import { FD_OPTIONS } from '../../data/fixedDeposits.ts';
 
 type InvestmentType = 'FD' | 'MF' | 'BOND';
 

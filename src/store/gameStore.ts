@@ -1,10 +1,10 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { GameState, Loan } from '../types/game';
-import { MUTUAL_FUNDS } from '../data/mutualFunds';
-import { FD_OPTIONS } from '../data/fixedDeposits';
-import { LOAN_TYPES } from '../data/loans';
-import { calculateMonthlyPayment } from '../utils/timeUtils';
+import { GameState, Loan } from '../types/game.ts';
+import { MUTUAL_FUNDS } from '../data/mutualFunds.ts';
+import { FD_OPTIONS } from '../data/fixedDeposits.ts';
+import { LOAN_TYPES } from '../data/loans.ts';
+import { calculateMonthlyPayment } from '../utils/timeUtils.ts';
 import { startOfDay, isSameDay } from 'date-fns';
 interface GameStore extends GameState {
   deposit: (amount: number) => void;
