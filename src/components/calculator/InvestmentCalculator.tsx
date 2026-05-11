@@ -1,52 +1,24 @@
-import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
-import { Calculator, TrendingUp } from 'lucide-react';
-import { MUTUAL_FUNDS } from '../../data/mutualFunds';
-import { BONDS } from '../../data/bonds';
-import { FD_OPTIONS } from '../../data/fixedDeposits';
-
-type InvestmentType = 'FD' | 'MF' | 'BOND';
-
-const FD_MAP = new Map(FD_OPTIONS.map(fd => [fd.term.toString(), fd]));
-const MF_MAP = new Map(MUTUAL_FUNDS.map(mf => [mf.id, mf]));
-const BOND_MAP = new Map(BONDS.map(bond => [bond.id, bond]));
+import { Calculator } from 'lucide-react';
+import { MUTUAL_FUNDS } from '../../data/mutualFunds.ts';
+import { BONDS } from '../../data/bonds.ts';
+import { FD_OPTIONS } from '../../data/fixedDeposits.ts';
+import { useInvestmentCalculator, InvestmentType } from './useInvestmentCalculator.ts';
+import CalculatorResult from './CalculatorResult.tsx';
 
 export default function InvestmentCalculator() {
-  const [amount, setAmount] = useState('1000');
-  const [years, setYears] = useState('1');
-  const [investmentType, setInvestmentType] = useState<InvestmentType>('FD');
-  const [selectedOption, setSelectedOption] = useState('');
-
-  const calculateReturns = useCallback(() => {
-    const principal = parseFloat(amount);
-    const timeInYears = parseFloat(years);
-    
-    if (isNaN(principal) || isNaN(timeInYears)) return null;
-
-    switch (investmentType) {
-      case 'FD': {
-        const option = FD_MAP.get(selectedOption);
-        if (!option) return null;
-        const interest = option.interestRate;
-        return principal * Math.pow(1 + interest, timeInYears);
-      }
-      case 'MF': {
-        const fund = MF_MAP.get(selectedOption);
-        if (!fund) return null;
-        return principal * Math.pow(1 + fund.expectedReturn, timeInYears);
-      }
-      case 'BOND': {
-        const bond = BOND_MAP.get(selectedOption);
-        if (!bond) return null;
-        return principal * (1 + (bond.interestRate * timeInYears));
-      }
-      default:
-        return null;
-    }
-  }, [amount, years, investmentType, selectedOption]);
-
-  const returns = calculateReturns();
-  const profit = returns ? returns - parseFloat(amount) : 0;
+  const {
+    amount,
+    setAmount,
+    years,
+    setYears,
+    investmentType,
+    setInvestmentType,
+    selectedOption,
+    setSelectedOption,
+    returns,
+    profit
+  } = useInvestmentCalculator();
 
   return (
     <motion.div
@@ -134,24 +106,7 @@ export default function InvestmentCalculator() {
             </select>
           </div>
 
-          <div className="bg-blue-50 p-3 rounded-lg">
-            <div className="flex items-center gap-2 mb-1">
-              <TrendingUp className="w-4 h-4 text-blue-600" />
-              <p className="text-sm font-medium text-blue-800">Expected Returns</p>
-            </div>
-            {returns ? (
-              <>
-                <p className="text-lg font-bold text-blue-900">
-                  ${returns.toFixed(2)}
-                </p>
-                <p className={`text-sm ${profit >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                  {profit >= 0 ? '+' : ''}{profit.toFixed(2)}
-                </p>
-              </>
-            ) : (
-              <p className="text-sm text-gray-500">Select all options</p>
-            )}
-          </div>
+          <CalculatorResult returns={returns} profit={profit} />
         </div>
       </div>
     </motion.div>
