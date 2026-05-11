@@ -1,5 +1,4 @@
 // Add these types to the existing file
-
 export interface BondType {
   id: string;
   name: string;
@@ -10,7 +9,6 @@ export interface BondType {
   description: string;
   riskRating: 1 | 2 | 3 | 4 | 5;
 }
-
 export interface BondInvestment {
   id: string;
   bondType: BondType;

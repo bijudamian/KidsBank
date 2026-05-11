@@ -1,33 +1,28 @@
-import React from 'react';
+
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { motion } from 'framer-motion';
 import { useAuthStore } from '../../store/authStore';
 import { toast } from 'sonner';
-
 const loginSchema = z.object({
   email: z.string().email(),
   password: z.string().min(6),
 });
-
 type LoginFormData = z.infer<typeof loginSchema>;
-
 export default function LoginForm() {
   const { signIn } = useAuthStore();
   const { register, handleSubmit, formState: { errors } } = useForm<LoginFormData>({
     resolver: zodResolver(loginSchema),
   });
-
   const onSubmit = async (data: LoginFormData) => {
     try {
       await signIn(data.email, data.password);
       toast.success('Welcome back!');
-    } catch (error) {
+    } catch (_error) {
       toast.error('Invalid credentials');
     }
   };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -47,7 +42,6 @@ export default function LoginForm() {
             <p className="mt-1 text-sm text-red-600">{errors.email.message}</p>
           )}
         </div>
-
         <div>
           <label className="block text-sm font-medium text-gray-700">Password</label>
           <input
@@ -59,7 +53,6 @@ export default function LoginForm() {
             <p className="mt-1 text-sm text-red-600">{errors.password.message}</p>
           )}
         </div>
-
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
