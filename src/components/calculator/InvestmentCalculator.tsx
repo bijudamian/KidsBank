@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Calculator, TrendingUp } from 'lucide-react';
 import { MUTUAL_FUNDS } from '../../data/mutualFunds';

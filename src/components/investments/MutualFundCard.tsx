@@ -1,14 +1,12 @@
-import React from 'react';
+
 import { motion } from 'framer-motion';
 import { TrendingUp, Star } from 'lucide-react';
 import { MutualFundType } from '../../types/game';
-
 interface MutualFundCardProps {
   fund: MutualFundType;
   isSelected: boolean;
   onSelect: () => void;
 }
-
 export default function MutualFundCard({ fund, isSelected, onSelect }: MutualFundCardProps) {
   return (
     <motion.button

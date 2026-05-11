@@ -1,5 +1,4 @@
 import { toast } from 'sonner';
-
 export class AppError extends Error {
   constructor(
     message: string,
@@ -10,7 +9,6 @@ export class AppError extends Error {
     this.name = 'AppError';
   }
 }
-
 export function handleError(error: unknown): void {
   if (error instanceof AppError) {
     toast.error(error.message);
@@ -22,14 +20,11 @@ export function handleError(error: unknown): void {
     console.error('Unknown error:', error);
   }
 }
-
-export function isSupabaseError(error: any): boolean {
+export function isSupabaseError(error: unknown): boolean {
   return error?.code !== undefined && typeof error?.message === 'string';
 }
-
-export function formatSupabaseError(error: any): string {
+export function formatSupabaseError(error: unknown): string {
   if (!isSupabaseError(error)) return 'An unexpected error occurred';
-
   switch (error.code) {
     case 'auth/invalid-email':
       return 'Please enter a valid email address';

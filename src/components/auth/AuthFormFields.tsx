@@ -1,16 +1,14 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
-
 interface AuthFormFieldsProps {
-  register: UseFormRegister<any>;
+  register: UseFormRegister<Record<string, unknown>>;
   errors: FieldErrors;
   isSubmitting: boolean;
   isLogin: boolean;
   onSubmit: (e: React.FormEvent) => void;
   onToggleMode: () => void;
 }
-
 export default function AuthFormFields({
   register,
   errors,
@@ -35,7 +33,6 @@ export default function AuthFormFields({
           <p className="mt-1 text-sm text-red-600">{errors.email.message as string}</p>
         )}
       </div>
-
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
           Password
@@ -50,7 +47,6 @@ export default function AuthFormFields({
           <p className="mt-1 text-sm text-red-600">{errors.password.message as string}</p>
         )}
       </div>
-
       <motion.button
         whileHover={{ scale: 1.02 }}
         whileTap={{ scale: 0.98 }}
@@ -70,7 +66,6 @@ export default function AuthFormFields({
           isLogin ? 'Sign In' : 'Create Account'
         )}
       </motion.button>
-
       <div className="text-center">
         <button
           type="button"

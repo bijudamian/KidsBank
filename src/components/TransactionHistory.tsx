@@ -4,7 +4,6 @@ import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
 import { useGameStore } from '../store/gameStore';
 import { format } from 'date-fns';
 import { Transaction } from '../types/game';
-
 const TransactionItem = React.memo(({ transaction }: { transaction: Transaction }) => (
   <motion.div
     initial={{ opacity: 0, y: 10 }}
@@ -32,13 +31,10 @@ const TransactionItem = React.memo(({ transaction }: { transaction: Transaction 
     </p>
   </motion.div>
 ));
-
 TransactionItem.displayName = 'TransactionItem';
-
 export default function TransactionHistory() {
   const transactions = useGameStore((state) => state.transactions);
   const recentTransactions = transactions.slice(-5).reverse();
-
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}

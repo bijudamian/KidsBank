@@ -1,7 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, TrendingUp } from 'lucide-react';
-
+import { ArrowUpRight } from 'lucide-react';
 interface InvestmentCardProps {
   title: string;
   description: string;
@@ -11,7 +10,6 @@ interface InvestmentCardProps {
   iconColor: string;
   isSelected?: boolean;
 }
-
 export default function InvestmentCard({
   title,
   description,

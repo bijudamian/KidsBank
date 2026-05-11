@@ -1,45 +1,38 @@
-import React, { useState, useCallback } from 'react';
+import { useState, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { Home, CreditCard, AlertCircle } from 'lucide-react';
 import { useGameStore } from '../store/gameStore';
 import { LOAN_TYPES } from '../data/loans';
 import InvestmentDialog from './InvestmentDialog';
 import { toast } from 'sonner';
-
 type LoanType = 'HOME' | 'PERSONAL';
-
 export default function DebtOptions() {
-  const { takeLoan, account } = useGameStore();
+  const { takeLoan } = useGameStore();
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [loanType, setLoanType] = useState<LoanType>('HOME');
   const [amount, setAmount] = useState('');
   const [term, setTerm] = useState('12');
-
   const handleLoan = useCallback(() => {
     const loanAmount = parseFloat(amount);
     const loanTerm = parseInt(term);
     const loanConfig = LOAN_TYPES[loanType];
-
     if (isNaN(loanAmount) || loanAmount <= 0) {
       toast.error('Please enter a valid amount');
       return;
     }
-
     if (loanAmount > loanConfig.maxAmount) {
       toast.error(`Maximum loan amount is $${loanConfig.maxAmount}`);
       return;
     }
-
     try {
       takeLoan(loanType, loanAmount, loanTerm);
       toast.success('Loan approved successfully');
       setIsDialogOpen(false);
       setAmount('');
-    } catch (error) {
+    } catch (_error) {
       toast.error('Failed to process loan request');
     }
   }, [loanType, amount, term]);
-
   const renderLoanDialog = () => (
     <div className="space-y-4">
       <div>
@@ -57,7 +50,6 @@ export default function DebtOptions() {
           Max: ${LOAN_TYPES[loanType].maxAmount}
         </p>
       </div>
-
       <div>
         <label className="block text-sm font-medium text-gray-700 mb-1">
           Term (months)
@@ -74,7 +66,6 @@ export default function DebtOptions() {
           ))}
         </select>
       </div>
-
       <div className="bg-blue-50 p-3 rounded-lg">
         <div className="flex items-center gap-2">
           <AlertCircle className="w-4 h-4 text-blue-600" />
@@ -86,7 +77,6 @@ export default function DebtOptions() {
       </div>
     </div>
   );
-
   return (
     <motion.div
       initial={{ opacity: 0, scale: 0.95 }}
@@ -94,7 +84,6 @@ export default function DebtOptions() {
       className="bg-white p-6 rounded-xl shadow-lg"
     >
       <h2 className="text-2xl font-bold text-gray-800 mb-4">Loans</h2>
-
       <div className="grid grid-cols-2 gap-4">
         <motion.button
           whileHover={{ scale: 1.02 }}
@@ -108,7 +97,6 @@ export default function DebtOptions() {
           <Home className="w-8 h-8 text-orange-500 mx-auto mb-2" />
           <p className="font-semibold text-orange-700">Home Loan</p>
         </motion.button>
-
         <motion.button
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
@@ -122,7 +110,6 @@ export default function DebtOptions() {
           <p className="font-semibold text-pink-700">Personal Loan</p>
         </motion.button>
       </div>
-
       <InvestmentDialog
         isOpen={isDialogOpen}
         onClose={() => setIsDialogOpen(false)}

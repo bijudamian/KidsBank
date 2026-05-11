@@ -1,6 +1,5 @@
-import React from 'react';
-import { motion } from 'framer-motion';
 
+import { motion } from 'framer-motion';
 export default function LoadingSpinner() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-purple-50">
