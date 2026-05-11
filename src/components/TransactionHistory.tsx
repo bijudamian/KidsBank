@@ -1,10 +1,10 @@
-import React from 'react';
+import { memo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ArrowDownRight, ArrowUpRight } from 'lucide-react';
 import { useGameStore } from '../store/gameStore';
 import { format } from 'date-fns';
 import { Transaction } from '../types/game';
-const TransactionItem = React.memo(({ transaction }: { transaction: Transaction }) => (
+const TransactionItem = memo(({ transaction }: { transaction: Transaction }) => (
   <motion.div
     initial={{ opacity: 0, y: 10 }}
     animate={{ opacity: 1, y: 0 }}

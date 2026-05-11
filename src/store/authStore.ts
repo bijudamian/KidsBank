@@ -49,7 +49,7 @@ export const useAuthStore = create<AuthState>((set) => ({
         console.error('Error initializing game state:', gameStateError);
         throw new AppError('Failed to initialize game state', gameStateError.code);
       }
-    } catch (_error) {
+    } catch {
       handleError(error);
       throw error;
     }
@@ -74,7 +74,7 @@ export const useAuthStore = create<AuthState>((set) => ({
           throw new AppError('Failed to create game state', gameStateError.code);
         }
       }
-    } catch (_error) {
+    } catch {
       handleError(error);
       throw error;
     }
@@ -84,7 +84,7 @@ export const useAuthStore = create<AuthState>((set) => ({
       const { error } = await supabase.auth.signOut();
       if (error) throw new AppError(formatSupabaseError(error), error.code);
       set({ user: null, session: null });
-    } catch (_error) {
+    } catch {
       handleError(error);
       throw error;
     }

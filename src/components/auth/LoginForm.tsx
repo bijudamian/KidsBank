@@ -19,7 +19,7 @@ export default function LoginForm() {
     try {
       await signIn(data.email, data.password);
       toast.success('Welcome back!');
-    } catch (_error) {
+    } catch {
       toast.error('Invalid credentials');
     }
   };

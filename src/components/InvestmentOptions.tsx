@@ -42,7 +42,7 @@ export default function InvestmentOptions() {
       }
       setIsDialogOpen(false);
       setAmount('');
-    } catch (_error) {
+    } catch {
       toast.error('Investment failed. Please try again.');
     }
   }, [amount, investmentType, months, selectedFund, selectedBond, account.balance]);
