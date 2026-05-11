@@ -1,9 +1,9 @@
-import React from 'react';
+import { type ReactNode } from 'react';
 import { Navigate } from 'react-router-dom';
 import { useAuthStore } from '../../store/authStore';
 import LoadingSpinner from '../common/LoadingSpinner';
 interface PrivateRouteProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 export default function PrivateRoute({ children }: PrivateRouteProps) {
   const { user, loading } = useAuthStore();

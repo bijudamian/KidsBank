@@ -1,4 +1,4 @@
-import React from 'react';
+import { type FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { FieldErrors, UseFormRegister } from 'react-hook-form';
 interface AuthFormFieldsProps {
@@ -6,7 +6,7 @@ interface AuthFormFieldsProps {
   errors: FieldErrors;
   isSubmitting: boolean;
   isLogin: boolean;
-  onSubmit: (e: React.FormEvent) => void;
+  onSubmit: (e: FormEvent) => void;
   onToggleMode: () => void;
 }
 export default function AuthFormFields({

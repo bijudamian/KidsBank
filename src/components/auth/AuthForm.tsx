@@ -27,7 +27,7 @@ export default function AuthForm() {
         await signUp(data.email, data.password);
         toast.success('Account created successfully! 🎈');
       }
-    } catch (_error) {
+    } catch {
       toast.error(isLogin ? 'Invalid credentials' : 'Could not create account');
     }
   };

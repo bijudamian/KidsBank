@@ -29,7 +29,7 @@ export default function DebtOptions() {
       toast.success('Loan approved successfully');
       setIsDialogOpen(false);
       setAmount('');
-    } catch (_error) {
+    } catch {
       toast.error('Failed to process loan request');
     }
   }, [loanType, amount, term]);
