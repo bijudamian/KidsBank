@@ -7,6 +7,10 @@ import { FD_OPTIONS } from '../../data/fixedDeposits';
 
 type InvestmentType = 'FD' | 'MF' | 'BOND';
 
+const FD_MAP = new Map(FD_OPTIONS.map(fd => [fd.term.toString(), fd]));
+const MF_MAP = new Map(MUTUAL_FUNDS.map(mf => [mf.id, mf]));
+const BOND_MAP = new Map(BONDS.map(bond => [bond.id, bond]));
+
 export default function InvestmentCalculator() {
   const [amount, setAmount] = useState('1000');
   const [years, setYears] = useState('1');
@@ -21,18 +25,18 @@ export default function InvestmentCalculator() {
 
     switch (investmentType) {
       case 'FD': {
-        const option = FD_OPTIONS.find(fd => fd.term.toString() === selectedOption);
+        const option = FD_MAP.get(selectedOption);
         if (!option) return null;
         const interest = option.interestRate;
         return principal * Math.pow(1 + interest, timeInYears);
       }
       case 'MF': {
-        const fund = MUTUAL_FUNDS.find(f => f.id === selectedOption);
+        const fund = MF_MAP.get(selectedOption);
         if (!fund) return null;
         return principal * Math.pow(1 + fund.expectedReturn, timeInYears);
       }
       case 'BOND': {
-        const bond = BONDS.find(b => b.id === selectedOption);
+        const bond = BOND_MAP.get(selectedOption);
         if (!bond) return null;
         return principal * (1 + (bond.interestRate * timeInYears));
       }
