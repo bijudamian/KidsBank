@@ -29,3 +29,4 @@ Running notes on ongoing development work.
 - updated API response handling and error messages
 ### 2026-05-15
 - updated CI/CD pipeline configuration
+- fixed minor UI inconsistencies across breakpoints
