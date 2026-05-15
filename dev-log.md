@@ -27,3 +27,5 @@ Running notes on ongoing development work.
 - updated colour tokens and design system
 ### 2026-05-13
 - updated API response handling and error messages
+### 2026-05-15
+- updated CI/CD pipeline configuration
