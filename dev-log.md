@@ -30,3 +30,5 @@ Running notes on ongoing development work.
 ### 2026-05-15
 - updated CI/CD pipeline configuration
 - fixed minor UI inconsistencies across breakpoints
+### 2026-05-16
+- cleaned up unused imports and dead code
