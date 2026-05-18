@@ -32,3 +32,5 @@ Running notes on ongoing development work.
 - fixed minor UI inconsistencies across breakpoints
 ### 2026-05-16
 - cleaned up unused imports and dead code
+### 2026-05-18
+- refactored data fetching with better caching
